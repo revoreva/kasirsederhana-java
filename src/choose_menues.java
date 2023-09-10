@@ -1,7 +1,10 @@
+
+import Order.DetailOrder;
+import Order.AddCount;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 
 //import java.awt.Dimension;
@@ -31,15 +34,15 @@ public class choose_menues extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        nasiGorengButton = new javax.swing.JButton();
+        sateAyamButton = new javax.swing.JButton();
+        ayamBakarButton = new javax.swing.JButton();
+        mieGorengButton = new javax.swing.JButton();
+        tehBotolButton = new javax.swing.JButton();
+        esTehManisButton = new javax.swing.JButton();
+        kwetiauButton = new javax.swing.JButton();
+        ayamGorengButton = new javax.swing.JButton();
+        esJerukButton = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,77 +63,77 @@ public class choose_menues extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setText("Nasi Goreng");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        nasiGorengButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        nasiGorengButton.setText("Nasi Goreng");
+        nasiGorengButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nasiGorengButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                nasiGorengButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton2.setText("Sate Ayam");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        sateAyamButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        sateAyamButton.setText("Sate Ayam");
+        sateAyamButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sateAyamButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                sateAyamButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton5.setText("Ayam Bakar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        ayamBakarButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ayamBakarButton.setText("Ayam Bakar");
+        ayamBakarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                ayamBakarButtonActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton6.setText("Mie Goreng");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        mieGorengButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        mieGorengButton.setText("Mie Goreng");
+        mieGorengButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                mieGorengButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton3.setText("Teh Botol");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        tehBotolButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        tehBotolButton.setText("Teh Botol");
+        tehBotolButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                tehBotolButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton4.setText("Es Teh Manis");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        esTehManisButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        esTehManisButton.setText("Es Teh Manis");
+        esTehManisButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                esTehManisButtonActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton7.setText("Kwetiau");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        kwetiauButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        kwetiauButton.setText("Kwetiau");
+        kwetiauButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                kwetiauButtonActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton8.setText("Ayam Goreng");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        ayamGorengButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ayamGorengButton.setText("Ayam Goreng");
+        ayamGorengButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                ayamGorengButtonActionPerformed(evt);
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton9.setText("Es Jeruk");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        esJerukButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        esJerukButton.setText("Es Jeruk");
+        esJerukButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                esJerukButtonActionPerformed(evt);
             }
         });
 
@@ -141,19 +144,19 @@ public class choose_menues extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tehBotolButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sateAyamButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nasiGorengButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ayamBakarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mieGorengButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(esTehManisButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(kwetiauButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ayamGorengButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(esJerukButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -161,19 +164,19 @@ public class choose_menues extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nasiGorengButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(mieGorengButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kwetiauButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ayamBakarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(sateAyamButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ayamGorengButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tehBotolButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(esTehManisButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(esJerukButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -219,7 +222,7 @@ this.setExtendedState(this.MAXIMIZED_BOTH);     // TODO add your handling code h
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-detail_order asd = new detail_order();
+DetailOrder asd = new DetailOrder();
 asd.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -227,50 +230,50 @@ asd.setVisible(true);// TODO add your handling code here:
 
     }//GEN-LAST:event_formWindowClosed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        add_count ac = new add_count(0);
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void nasiGorengButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nasiGorengButtonActionPerformed
+//        AddCount ac = new AddCount(0);
+//        ac.setVisible(true);
+    }//GEN-LAST:event_nasiGorengButtonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        add_count ac = new add_count(1);
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void mieGorengButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mieGorengButtonActionPerformed
+//        AddCount ac = new AddCount(1);
+//        ac.setVisible(true);
+    }//GEN-LAST:event_mieGorengButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        add_count ac = new add_count(2);
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void kwetiauButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kwetiauButtonActionPerformed
+//        AddCount ac = new AddCount(2);
+//        ac.setVisible(true);
+    }//GEN-LAST:event_kwetiauButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        add_count ac = new add_count(3);
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void sateAyamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sateAyamButtonActionPerformed
+//        AddCount ac = new AddCount(3);
+//        ac.setVisible(true);
+    }//GEN-LAST:event_sateAyamButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        add_count ac = new add_count(4);
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void ayamBakarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ayamBakarButtonActionPerformed
+//        AddCount ac = new AddCount(4);
+//        ac.setVisible(true);
+    }//GEN-LAST:event_ayamBakarButtonActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        add_count ac = new add_count(5);
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void ayamGorengButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ayamGorengButtonActionPerformed
+//        AddCount ac = new AddCount(5);
+//        ac.setVisible(true);
+    }//GEN-LAST:event_ayamGorengButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        add_count ac = new add_count(6);
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void tehBotolButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tehBotolButtonActionPerformed
+//        AddCount ac = new AddCount(6);
+//        ac.setVisible(true);
+    }//GEN-LAST:event_tehBotolButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        add_count ac = new add_count(7);
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void esTehManisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esTehManisButtonActionPerformed
+//        AddCount ac = new AddCount(7);
+//        ac.setVisible(true);
+    }//GEN-LAST:event_esTehManisButtonActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        add_count ac = new add_count(8);
-        ac.setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void esJerukButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esJerukButtonActionPerformed
+//        AddCount ac = new AddCount(8);
+//        ac.setVisible(true);
+    }//GEN-LAST:event_esJerukButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,17 +312,17 @@ asd.setVisible(true);// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton ayamBakarButton;
+    private javax.swing.JButton ayamGorengButton;
+    private javax.swing.JButton esJerukButton;
+    private javax.swing.JButton esTehManisButton;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton kwetiauButton;
+    private javax.swing.JButton mieGorengButton;
+    private javax.swing.JButton nasiGorengButton;
+    private javax.swing.JButton sateAyamButton;
+    private javax.swing.JButton tehBotolButton;
     // End of variables declaration//GEN-END:variables
 }
