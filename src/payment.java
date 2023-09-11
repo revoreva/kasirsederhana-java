@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
@@ -24,12 +25,33 @@ public class payment extends javax.swing.JFrame {
      */
     public payment(int price) {
         initComponents();
+        setPaymentMethodList();
+        setNominalPaidTextField(false, "");
         total = price;
         ppn = total*0.1;
-        txt_totalpayment.setText(": Rp."+total);
-        txt_ppn.setText(": Rp."+ppn);
+        totalPriceLabel.setText(": Rp."+total);
+        ppnLabel.setText(": Rp."+ppn);
         payment = (int) (total+ppn);
-        txt_payment.setText(": Rp."+(payment));
+        totalPriceIncludePPNLabel.setText(": Rp."+(payment));
+    }
+    
+    private void setNominalPaidTextField(boolean isEnabled, String text) {
+        nominalPaidTextField.setText(text);
+        
+        if(isEnabled) {
+            nominalPaidTextField.setEditable(true);
+        } else {
+            nominalPaidTextField.setEditable(false);
+        }
+    }
+    
+    private void setPaymentMethodList() {
+        paymentMethodChoice.add("Pilih Metode Pembayaran");
+        paymentMethodChoice.add("Debit Card");
+        paymentMethodChoice.add("Credit Card");
+        paymentMethodChoice.add("E-Wallet");
+        paymentMethodChoice.add("Transfer");
+        paymentMethodChoice.add("Cash");
     }
 
     /**
@@ -48,13 +70,14 @@ public class payment extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txt_totalpayment = new javax.swing.JLabel();
-        txt_ppn = new javax.swing.JLabel();
-        txt_payment = new javax.swing.JLabel();
-        txt_pay = new javax.swing.JTextField();
+        totalPriceLabel = new javax.swing.JLabel();
+        ppnLabel = new javax.swing.JLabel();
+        totalPriceIncludePPNLabel = new javax.swing.JLabel();
+        nominalPaidTextField = new javax.swing.JTextField();
         txt_change = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        finishButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        paymentMethodChoice = new java.awt.Choice();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -79,49 +102,55 @@ public class payment extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Kembalian");
 
-        txt_totalpayment.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_totalpayment.setText("jLabel7");
+        totalPriceLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        totalPriceLabel.setText("jLabel7");
 
-        txt_ppn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_ppn.setText("jLabel8");
+        ppnLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ppnLabel.setText("jLabel8");
 
-        txt_payment.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_payment.setText("jLabel9");
+        totalPriceIncludePPNLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        totalPriceIncludePPNLabel.setText("jLabel9");
 
-        txt_pay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txt_pay.addActionListener(new java.awt.event.ActionListener() {
+        nominalPaidTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nominalPaidTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_payActionPerformed(evt);
+                nominalPaidTextFieldActionPerformed(evt);
             }
         });
-        txt_pay.addKeyListener(new java.awt.event.KeyAdapter() {
+        nominalPaidTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_payKeyPressed(evt);
+                nominalPaidTextFieldKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_payKeyReleased(evt);
+                nominalPaidTextFieldKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_payKeyTyped(evt);
+                nominalPaidTextFieldKeyTyped(evt);
             }
         });
 
         txt_change.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_change.setText(": Rp. 0");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Selesai");
-        jButton1.setEnabled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        finishButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        finishButton.setText("Selesai");
+        finishButton.setEnabled(false);
+        finishButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                finishButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Kembali");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Kembali");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        paymentMethodChoice.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                paymentMethodChoiceItemStateChanged(evt);
             }
         });
 
@@ -133,26 +162,35 @@ public class payment extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_change)
-                            .addComponent(txt_totalpayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_ppn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                            .addComponent(txt_pay))
-                        .addContainerGap())))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(totalPriceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ppnLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(totalPriceIncludePPNLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(27, 27, 27))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(finishButton, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(nominalPaidTextField)
+                                .addContainerGap())
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(paymentMethodChoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(52, 52, 52)
+                        .addComponent(txt_change)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,27 +200,33 @@ public class payment extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_totalpayment))
+                    .addComponent(totalPriceLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_ppn))
+                    .addComponent(ppnLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txt_payment))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_pay, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(totalPriceIncludePPNLabel))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(45, 45, 45))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(paymentMethodChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nominalPaidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txt_change))
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(finishButton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(46, 46, 46))
         );
 
@@ -201,48 +245,63 @@ public class payment extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_payActionPerformed
+    private void nominalPaidTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nominalPaidTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_payActionPerformed
+    }//GEN-LAST:event_nominalPaidTextFieldActionPerformed
 
-    private void txt_payKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_payKeyReleased
-    int value = 0;
-    try{
-        money = txt_pay.getText().isEmpty() ? 0 : Integer.parseInt(txt_pay.getText());
-        if(money < payment == true){
-            jButton1.setEnabled(false);
-            value =0;
-        }else{
-            value = money-payment;
-            jButton1.setEnabled(true);
+    private void nominalPaidTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nominalPaidTextFieldKeyReleased
+        int value = 0;
+        
+        try {
+            money = nominalPaidTextField.getText().isEmpty() ? 0 : Integer.parseInt(nominalPaidTextField.getText());
+            if(money < payment == true) {
+                finishButton.setEnabled(false);
+                value =0;
+            } else {
+                value = money-payment;
+                finishButton.setEnabled(true);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        } finally {
+            txt_change.setText(": Rp."+ value);
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, e);
-    }finally{
-        txt_change.setText(": Rp."+ value);
-    }
-    }//GEN-LAST:event_txt_payKeyReleased
+    }//GEN-LAST:event_nominalPaidTextFieldKeyReleased
 
-    private void txt_payKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_payKeyTyped
-   if(uFilter.filterDigit(evt) == false){
-       evt.consume();
-       getToolkit().beep();
-       JOptionPane.showMessageDialog(null,"Masukan Bukan Digit!","Masukan Salah",JOptionPane.ERROR_MESSAGE);
-   }
-    }//GEN-LAST:event_txt_payKeyTyped
+    private void nominalPaidTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nominalPaidTextFieldKeyTyped
+        if(uFilter.filterDigit(evt) == false){
+            evt.consume();
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(null,"Masukan Bukan Digit!","Masukan Salah",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_nominalPaidTextFieldKeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishButtonActionPerformed
         order_center.clearOrder();
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_finishButtonActionPerformed
 
-    private void txt_payKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_payKeyPressed
+    private void nominalPaidTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nominalPaidTextFieldKeyPressed
 
-    }//GEN-LAST:event_txt_payKeyPressed
+    }//GEN-LAST:event_nominalPaidTextFieldKeyPressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void paymentMethodChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_paymentMethodChoiceItemStateChanged
+        String choosenPaymentMethodString = paymentMethodChoice.getSelectedItem().toString().toLowerCase();
+        System.out.println("payment method: " + choosenPaymentMethodString);
+        if(choosenPaymentMethodString.equals("cash")) {
+            setNominalPaidTextField(true, "");
+        } else if(choosenPaymentMethodString.equals("Pilih Metode Pembayaran".toLowerCase())) {
+            setNominalPaidTextField(false, "");
+            finishButton.setEnabled(false);
+        } else {
+            setNominalPaidTextField(false, "" + (payment));
+            finishButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_paymentMethodChoiceItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -280,8 +339,8 @@ dispose();        // TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton finishButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -289,10 +348,11 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField nominalPaidTextField;
+    private java.awt.Choice paymentMethodChoice;
+    private javax.swing.JLabel ppnLabel;
+    private javax.swing.JLabel totalPriceIncludePPNLabel;
+    private javax.swing.JLabel totalPriceLabel;
     private javax.swing.JLabel txt_change;
-    private javax.swing.JTextField txt_pay;
-    private javax.swing.JLabel txt_payment;
-    private javax.swing.JLabel txt_ppn;
-    private javax.swing.JLabel txt_totalpayment;
     // End of variables declaration//GEN-END:variables
 }
