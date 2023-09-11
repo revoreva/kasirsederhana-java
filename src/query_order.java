@@ -23,6 +23,7 @@ public class query_order extends order_center{
         this.total = 0;
         query_menu qMenu = new query_menu();
         String temp = "Menu yang sudah di pesan :\n\n";
+        System.out.println("sum order: " + order_center.order.size());
         for (int i = 0; i < order_center.order.size(); i++) {
             if(order_center.order.get(i).get(1)!= 0){
                 menu = qMenu.getMenu(order_center.order.get(i).get(0));
