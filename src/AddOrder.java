@@ -1,4 +1,5 @@
 
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /*
@@ -12,23 +13,18 @@ import javax.swing.JOptionPane;
  * @author reva.yoga
  */
 public class AddOrder extends javax.swing.JFrame {
-    public int index;
-    private boolean isNewOrder = true;
+    private int indexMenu;
+    private int indexOrder;
+    private List<Integer> indexOrderList;
     /**
      * Creates new form add_count
+     * @param indexMenu
      */
-    public AddOrder(int id) {
+    public AddOrder(int indexMenu) {
         initComponents();
-        index = id;
-        if(order_center.setDisplay(index) != -1) {
-            isNewOrder = false;
-            txt_count.setValue(order_center.order.get(index).get(1));
-            txt_desc.setText(order_center.description.get(index));
-            newOrderButton.setVisible(true);
-        } else {
-            isNewOrder = true;
-            newOrderButton.setVisible(false);
-        }
+        initVariables(indexMenu);
+        setupOrder();
+        setupViews();
     }
 
     /**
@@ -50,6 +46,8 @@ public class AddOrder extends javax.swing.JFrame {
         newOrderButton = new javax.swing.JButton();
         txt_count = new javax.swing.JSpinner();
         saveOrderButton = new javax.swing.JButton();
+        nextOrderButton = new javax.swing.JButton();
+        prevOrderButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -103,6 +101,22 @@ public class AddOrder extends javax.swing.JFrame {
             }
         });
 
+        nextOrderButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nextOrderButton.setText("▶");
+        nextOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextOrderButtonActionPerformed(evt);
+            }
+        });
+
+        prevOrderButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        prevOrderButton.setText("◀");
+        prevOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevOrderButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -121,11 +135,15 @@ public class AddOrder extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txt_count, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3))))
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                                .addComponent(prevOrderButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nextOrderButton))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(newOrderButton)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(304, Short.MAX_VALUE)
@@ -141,7 +159,9 @@ public class AddOrder extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_count, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(nextOrderButton)
+                    .addComponent(prevOrderButton))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,12 +190,46 @@ public class AddOrder extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void initVariables(int indexMenu) {
+        this.indexMenu = indexMenu;
+    }
+    
+    private void setupOrder() {
+        indexOrderList = order_center.setDisplay(indexMenu);
+        if(!indexOrderList.isEmpty()) {
+            indexOrder = indexOrderList.get(0);
+        } else {
+            indexOrder = order_center.order.size();
+        }
+    }
+    
+    private void setupViews() {
+        prevOrderButton.setVisible(false);
+        nextOrderButton.setVisible(false);
+        
+        if(!indexOrderList.isEmpty()) {
+            if(indexOrder < order_center.order.size()-1) {
+                nextOrderButton.setVisible(true);
+            }
+            
+            if(indexOrder > 0) {
+                prevOrderButton.setVisible(true);
+            }
+            
+            txt_count.setValue(order_center.order.get(indexOrder).get(1));
+            txt_desc.setText(order_center.description.get(indexOrder));
+            newOrderButton.setVisible(true);
+        } else {
+            newOrderButton.setVisible(false);
+        }
+    }
+    
     private void newOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newOrderButtonActionPerformed
         txt_count.setValue(0);
         txt_desc.setText("");
         newOrderButton.setVisible(false);
-        isNewOrder = true;
+        indexOrder++;
     }//GEN-LAST:event_newOrderButtonActionPerformed
 
     private void txt_countKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_countKeyTyped
@@ -190,10 +244,22 @@ public class AddOrder extends javax.swing.JFrame {
         int count = (Integer) txt_count.getValue();
         String desc = txt_desc.getText();
 
-        order_center.setValue(index, count, desc, isNewOrder);
+        order_center.setValue(indexOrder, indexMenu, count, desc);
+        
+        setupOrder();
 
         this.dispose();
     }//GEN-LAST:event_saveOrderButtonActionPerformed
+
+    private void nextOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextOrderButtonActionPerformed
+        indexOrder++;
+        setupViews();
+    }//GEN-LAST:event_nextOrderButtonActionPerformed
+
+    private void prevOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevOrderButtonActionPerformed
+        indexOrder--;
+        setupViews();
+    }//GEN-LAST:event_prevOrderButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +311,8 @@ public class AddOrder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newOrderButton;
+    private javax.swing.JButton nextOrderButton;
+    private javax.swing.JButton prevOrderButton;
     private javax.swing.JButton saveOrderButton;
     private javax.swing.JSpinner txt_count;
     private javax.swing.JTextArea txt_desc;
