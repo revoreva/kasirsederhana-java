@@ -17,8 +17,8 @@ public class detail_order extends javax.swing.JFrame {
     
     public detail_order() {
         initComponents();
-        txt_list.setText(qOrder.showAllOrder());
-        if(qOrder.totalPayment() <= 0){btnLanjut.setEnabled(false);}
+        orderListTextArea.setText(qOrder.showAllOrder());
+        if(qOrder.totalPayment() <= 0){nextButton.setEnabled(false);}
     }
 
     /**
@@ -31,39 +31,39 @@ public class detail_order extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txt_list = new javax.swing.JTextArea();
-        btnLanjut = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        orderListTextArea = new javax.swing.JTextArea();
+        nextButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 0));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Daftar Pesanan");
+        titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Daftar Pesanan");
 
-        txt_list.setColumns(20);
-        txt_list.setRows(5);
-        txt_list.setEnabled(false);
-        jScrollPane1.setViewportView(txt_list);
+        orderListTextArea.setColumns(20);
+        orderListTextArea.setRows(5);
+        orderListTextArea.setEnabled(false);
+        jScrollPane1.setViewportView(orderListTextArea);
 
-        btnLanjut.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnLanjut.setText("Lanjutkan");
-        btnLanjut.addActionListener(new java.awt.event.ActionListener() {
+        nextButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nextButton.setText("Lanjutkan");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLanjutActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("Kembali");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        backButton.setText("Kembali");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -71,28 +71,28 @@ public class detail_order extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(backButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLanjut)))
+                        .addComponent(nextButton)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(titleLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLanjut)
-                    .addComponent(jButton2))
+                    .addComponent(nextButton)
+                    .addComponent(backButton))
                 .addContainerGap())
         );
 
@@ -111,15 +111,15 @@ public class detail_order extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLanjutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanjutActionPerformed
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         payment p = new payment(qOrder.totalPayment());
         p.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnLanjutActionPerformed
+    }//GEN-LAST:event_nextButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,11 +158,11 @@ public class detail_order extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLanjut;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton backButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txt_list;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JTextArea orderListTextArea;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
