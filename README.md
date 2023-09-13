@@ -8,3 +8,6 @@ Tugas besar kelompok mata kuliah OOP semester 3 ARS University dengan kelompok:
 
 Kanban Board (Private):
 https://trello.com/b/DkGZjUNM/kasir-app
+
+Latest Release:
+https://github.com/revoreva/kasirsederhana-java/releases/tag/0.1.0
