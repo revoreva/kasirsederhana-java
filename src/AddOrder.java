@@ -196,11 +196,11 @@ public class AddOrder extends javax.swing.JFrame {
     }
     
     private void setupOrder() {
-        indexOrderList = order_center.setDisplay(indexMenu);
+        indexOrderList = OrderCenter.setDisplay(indexMenu);
         if(!indexOrderList.isEmpty()) {
             indexOrder = indexOrderList.get(0);
         } else {
-            indexOrder = order_center.order.size();
+            indexOrder = OrderCenter.order.size();
         }
     }
     
@@ -209,7 +209,7 @@ public class AddOrder extends javax.swing.JFrame {
         nextOrderButton.setVisible(false);
         
         if(!indexOrderList.isEmpty()) {
-            if(indexOrder < order_center.order.size()-1) {
+            if(indexOrder < OrderCenter.order.size()-1) {
                 nextOrderButton.setVisible(true);
             }
             
@@ -217,8 +217,10 @@ public class AddOrder extends javax.swing.JFrame {
                 prevOrderButton.setVisible(true);
             }
             
-            txt_count.setValue(order_center.order.get(indexOrder).get(1));
-            txt_desc.setText(order_center.description.get(indexOrder));
+            OrderModel currentOrder = OrderCenter.order.get(indexOrder);
+            
+            txt_count.setValue(currentOrder.jumlahPesanan);
+            txt_desc.setText(currentOrder.description);
             newOrderButton.setVisible(true);
         } else {
             newOrderButton.setVisible(false);
@@ -244,7 +246,7 @@ public class AddOrder extends javax.swing.JFrame {
         int count = (Integer) txt_count.getValue();
         String desc = txt_desc.getText();
 
-        order_center.setValue(indexOrder, indexMenu, count, desc);
+        OrderCenter.setValue(indexOrder, indexMenu, count, desc);
         
         setupOrder();
 

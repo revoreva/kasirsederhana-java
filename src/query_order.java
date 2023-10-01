@@ -12,25 +12,27 @@ import java.util.List;
  *
  * @author imamkahih
  */
-public class query_order extends order_center{
+public class query_order extends OrderCenter{
     
     private String[] menu; //penyimpanan sementara data menu yang diambil
     private int total; // untuk menyimpan total harga menu
 
     @Override
     public String showAllOrder(){ //untuk menampilkan seluruh menu yang sudah di pesan
-        query_order qo = new query_order();
+        query_order queryOrder = new query_order();
         this.total = 0;
-        query_menu qMenu = new query_menu();
+        query_menu queryMenu = new query_menu();
         String temp = "Menu yang sudah di pesan :\n\n";
-        System.out.println("sum order: " + order_center.order.size());
-        for (int i = 0; i < order_center.order.size(); i++) {
-            if(order_center.order.get(i).get(1)!= 0){
-                menu = qMenu.getMenu(order_center.order.get(i).get(0));
-                temp += menu[0] + "\t" + menu[1] + "\tX" + order_center.order.get(i).get(1) + "\t" + 
-                        (order_center.order.get(i).get(1) * qMenu.getIntPrice(menu[1])) +"\n"+ 
-                        order_center.description.get(i)+ "\n\n";
-                this.total += order_center.order.get(i).get(1) * qMenu.getIntPrice(menu[1]);
+        System.out.println("sum order: " + OrderCenter.order.size());
+        for (int i = 0; i < OrderCenter.order.size(); i++) {
+            if(OrderCenter.order.get(i).jumlahPesanan != 0){
+                OrderModel currentOrder = OrderCenter.order.get(i);
+                
+                menu = queryMenu.getMenu(currentOrder.idMenu);
+                temp += menu[0] + "\t" + menu[1] + "\tX" + currentOrder.jumlahPesanan + "\t" + 
+                        (currentOrder.jumlahPesanan * queryMenu.getIntPrice(menu[1])) +"\n"+ 
+                        currentOrder.description + "\n\n";
+                this.total += currentOrder.jumlahPesanan * queryMenu.getIntPrice(menu[1]);
             }
         }
         temp += "-------------------------------------------------\n Total : Rp. " + total;

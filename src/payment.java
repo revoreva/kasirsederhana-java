@@ -277,7 +277,7 @@ public class payment extends javax.swing.JFrame {
     }//GEN-LAST:event_nominalPaidTextFieldKeyTyped
 
     private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishButtonActionPerformed
-        order_center.clearOrder();
+        OrderCenter.clearOrder();
         dispose();
     }//GEN-LAST:event_finishButtonActionPerformed
 
