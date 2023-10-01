@@ -3,6 +3,9 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -277,7 +280,21 @@ public class payment extends javax.swing.JFrame {
     }//GEN-LAST:event_nominalPaidTextFieldKeyTyped
 
     private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishButtonActionPerformed
-        OrderCenter.clearOrder();
+        // set metode pembayaran di receipt
+        OrderCenter.currentOrder().paymentMethod = paymentMethodChoice.getSelectedItem().toString();
+        
+        // set kasirName di receipt
+        OrderCenter.currentOrder().kasirName = LoginMenu.usernameLoggedIn;
+        
+        // set tanggal di receipt
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        OrderCenter.currentOrder().orderDate.date = localDate.getDayOfMonth();
+        OrderCenter.currentOrder().orderDate.month = localDate.getMonthValue();
+        OrderCenter.currentOrder().orderDate.year = localDate.getYear();
+        
+        ReceiptOrder receiptPage = new ReceiptOrder();
+        receiptPage.setVisible(true);
         dispose();
     }//GEN-LAST:event_finishButtonActionPerformed
 
