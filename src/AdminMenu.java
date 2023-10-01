@@ -10,17 +10,31 @@
 public class AdminMenu extends javax.swing.JFrame {
 
     private String usernameLoggedIn;
+    ReceiptOrder receiptPage = new ReceiptOrder();
     
     /**
      * Creates new form NewAdminMenu
      */
     public AdminMenu() {
         initComponents();
+        receiptPage.isOnlyShowingReceiptFromAdmin = true;
     }
     
     void setupLayout(String usernameLoggedIn) {
         this.usernameLoggedIn = usernameLoggedIn;
         titleLabel.setText(titleLabel.getText() + " " + usernameLoggedIn);
+        int countOrder = OrderCenter.sumOrder();
+        
+        if(countOrder > 0) {
+            countOrder--;
+        }
+        
+        jumlahReceiptLabel.setText(jumlahReceiptLabel.getText() + " " + countOrder);
+        
+        indexReceiptChoice.add("-");
+        for (int i = 0; i < countOrder; i++) {
+            indexReceiptChoice.add("" + (i+1));
+        }
     }
 
     /**
@@ -34,6 +48,9 @@ public class AdminMenu extends javax.swing.JFrame {
 
         titleLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
+        jumlahReceiptLabel = new javax.swing.JLabel();
+        lihatReceiptLabel = new javax.swing.JLabel();
+        indexReceiptChoice = new java.awt.Choice();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,15 +65,35 @@ public class AdminMenu extends javax.swing.JFrame {
             }
         });
 
+        jumlahReceiptLabel.setText("Jumlah Receipt: ");
+
+        lihatReceiptLabel.setText("Lihat Receipt ke:");
+
+        indexReceiptChoice.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                indexReceiptChoiceItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(logoutButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(logoutButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lihatReceiptLabel)
+                                .addGap(26, 26, 26)
+                                .addComponent(indexReceiptChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jumlahReceiptLabel))))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -66,18 +103,45 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jumlahReceiptLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(lihatReceiptLabel))
+                    .addComponent(indexReceiptChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(295, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        //logout untuk kembali ke menu awal login page
         LoginMenu loginMenu = new LoginMenu();
         loginMenu.resetUsersLoggedIn();
         loginMenu.setVisible(true);
         dispose();
     }//GEN-LAST:event_logoutButtonMouseClicked
+
+    private void indexReceiptChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_indexReceiptChoiceItemStateChanged
+        String indexReceipt = indexReceiptChoice.getSelectedItem();
+        
+        System.out.println("index: " + indexReceipt);
+        
+        // munculkan receipt page apabila index yang dipilih valid
+        if(indexReceipt != "-" && indexReceipt != null) {
+            int indexChoosen = Integer.valueOf(indexReceipt);
+            indexChoosen--;
+            System.out.println("index: " + indexChoosen);
+            
+            if(indexChoosen >= 0) {
+                receiptPage.indexReceipt = indexChoosen;
+                receiptPage.setupLayout();
+                receiptPage.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_indexReceiptChoiceItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -116,6 +180,9 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Choice indexReceiptChoice;
+    private javax.swing.JLabel jumlahReceiptLabel;
+    private javax.swing.JLabel lihatReceiptLabel;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
