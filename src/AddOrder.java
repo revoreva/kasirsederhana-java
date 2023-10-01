@@ -37,7 +37,7 @@ public class AddOrder extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        foodLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -52,10 +52,10 @@ public class AddOrder extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Judul Makanan");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        foodLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        foodLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        foodLabel.setText("Judul Makanan");
+        foodLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Jumlah");
@@ -121,7 +121,7 @@ public class AddOrder extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(foodLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -154,7 +154,7 @@ public class AddOrder extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(foodLabel)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_count, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,6 +193,10 @@ public class AddOrder extends javax.swing.JFrame {
     
     private void initVariables(int indexMenu) {
         this.indexMenu = indexMenu;
+        
+        query_menu menu = new query_menu();
+        
+        foodLabel.setText(menu.getMenu(indexMenu)[0]);
     }
     
     private void setupOrder() {
@@ -200,7 +204,7 @@ public class AddOrder extends javax.swing.JFrame {
         if(!indexOrderList.isEmpty()) {
             indexOrder = indexOrderList.get(0);
         } else {
-            indexOrder = OrderCenter.order.size();
+            indexOrder = OrderCenter.currentOrder().allMenuOrdered.size();
         }
     }
     
@@ -209,7 +213,7 @@ public class AddOrder extends javax.swing.JFrame {
         nextOrderButton.setVisible(false);
         
         if(!indexOrderList.isEmpty()) {
-            if(indexOrder < OrderCenter.order.size()-1) {
+            if(indexOrder < OrderCenter.currentOrder().allMenuOrdered.size()-1) {
                 nextOrderButton.setVisible(true);
             }
             
@@ -217,7 +221,7 @@ public class AddOrder extends javax.swing.JFrame {
                 prevOrderButton.setVisible(true);
             }
             
-            OrderModel currentOrder = OrderCenter.order.get(indexOrder);
+            MenuOrdered currentOrder = OrderCenter.currentOrder().allMenuOrdered.get(indexOrder);
             
             txt_count.setValue(currentOrder.jumlahPesanan);
             txt_desc.setText(currentOrder.description);
@@ -306,7 +310,7 @@ public class AddOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel foodLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

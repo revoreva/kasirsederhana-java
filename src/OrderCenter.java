@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author reva.yoga
  */
 
-class OrderModel {
+class MenuOrdered {
     int idMenu, jumlahPesanan;
     String description;
     
@@ -24,37 +24,67 @@ class OrderModel {
     }
 }
 
+class OrderDate {
+    int date = 0, month = 0, year = 0;
+}
+
+class AllOrder {
+    List<MenuOrdered> allMenuOrdered = new ArrayList<MenuOrdered>(); //untuk menyimpan id menu, jumlah pesanan, deskripsi dari pesanan
+    String paymentMethod = "", kasirName = "";
+    OrderDate orderDate = new OrderDate();
+}
+
 abstract class OrderCenter {
-    static List<OrderModel> order = new ArrayList<OrderModel>(); //untuk menyimpan id menu, jumlah pesanan, deskripsi dari pesanan
+    private static List<AllOrder> allOrder = new ArrayList<AllOrder>(); //untuk menyimpan semua order
+    
+    public static AllOrder currentOrder() {
+        int currentSize = allOrder.size();
+        
+        if(currentSize == 0) {
+            finishAnOrder();
+            currentSize++;
+        }
+        
+        return allOrder.get(currentSize-1);
+    }
+    
+    public static AllOrder orderAt(int at) {
+        return allOrder.get(at);
+    }
+    
+    public static int sumOrder() {
+        return allOrder.size();
+    }
+    
+    public static void finishAnOrder() {
+        AllOrder order = new AllOrder();
+        allOrder.add(order);
+    }
     
     public static void setValue(int indexOrder, int indexMenu, int count, String desc) { //method untuk menambah & Perbarui pesanan
-        if(indexOrder >= order.size()) { // new order
-            OrderModel currentOrder = new OrderModel();
+        if(indexOrder >= currentOrder().allMenuOrdered.size()) { // new allMenuOrdered
+            MenuOrdered currentOrder = new MenuOrdered();
             currentOrder.set(indexMenu, count, desc);// id menu, jumlah pesanan, deskripsi, dimasukan kedalam arraylist
-            order.add(currentOrder);
+            currentOrder().allMenuOrdered.add(currentOrder);
         } else {
             if(count <= 0) { // jika jumlah yang dipesan adalah 0, maka menu tersebut akan di hapus dari pesanan
-                order.remove(indexOrder);
+                currentOrder().allMenuOrdered.remove(indexOrder);
             } else { // jika jumlah pesanan bukan 0, akan memperbarui pesanan yang sudah ada
-                order.get(indexOrder).set(indexMenu, count, desc);
+                currentOrder().allMenuOrdered.get(indexOrder).set(indexMenu, count, desc);
             }
         }
     }
     
     public static List<Integer> setDisplay(int index) { // metode untuk memeriksa menu yang dipilih sudah dipesan atau belum.
         List<Integer> indexOrder = new ArrayList<>();
-        for (int i = 0; i < order.size(); i++) {
-            if(index == order.get(i).idMenu){
+        for (int i = 0; i < currentOrder().allMenuOrdered.size(); i++) {
+            if(index == currentOrder().allMenuOrdered.get(i).idMenu){
                 indexOrder.add(i);
             }
         }
         return indexOrder;
     }
     
-    public static void clearOrder(){ //methode untuk menghapus semua isi arraylist order & description
-        order.clear();
-    }
-    
-    abstract String showAllOrder(); //untuk menampilkan semua order
+    abstract String showAllOrder(int indexReceipt); //untuk menampilkan semua allMenuOrdered
     
 }

@@ -286,6 +286,7 @@ public class choose_menues extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        //logout untuk kembali ke menu awal login page
         LoginMenu loginMenu = new LoginMenu();
         loginMenu.resetUsersLoggedIn();
         loginMenu.setVisible(true);

@@ -19,7 +19,7 @@ import javax.swing.JLabel;
  */
 public class LoginMenu extends javax.swing.JFrame {
 
-    private static String usernameLoggedIn = "";
+    public static String usernameLoggedIn = "";
     private static UsersManagement.Role roleLoggedIn = UsersManagement.Role.invalidUsers;
     
     /**
@@ -142,7 +142,7 @@ public class LoginMenu extends javax.swing.JFrame {
 
                 UsersManagement.Role role = UsersManagement.Role.valueOf(user[2]);
                 
-//                System.out.println(user[0] + " exist! with role " + role.toString());
+                System.out.println(user[0] + " exist! with role " + role.toString());
 
                 usernameLoggedIn = user[0];
                 roleLoggedIn = role;
@@ -155,7 +155,7 @@ public class LoginMenu extends javax.swing.JFrame {
 
                 break;
             } else {
-//                System.out.println("user: " + user[0] + " not match with " + usernameTextField.getText());
+                System.out.println("user: " + user[0] + " not match with " + usernameTextField.getText());
             }
         }
 
