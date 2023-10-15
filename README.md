@@ -6,7 +6,7 @@ Kanban Board (Private):
 https://trello.com/b/DkGZjUNM/kasir-app
 
 Latest Release:
-- https://github.com/revoreva/kasirsederhana-java/releases/tag/0.2.0
+- https://github.com/revoreva/kasirsederhana-java/releases
 - (REFACTOR) [KASIR-14] Refactor order center
 - (FEAT) [KASIR-8] Create Receipt after done payment
 - (FEAT) [KASIR-9] Save Receipt into Local Session, to be opened by Admin
