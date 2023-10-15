@@ -10,11 +10,11 @@
 public class UsersManagement {
     protected String[][] listUsers = {
         // username, password, role
-        {"guest1","guest1","generalUsers"},
-        {"guest2","guest2","generalUsers"},
-        {"guest3","guest3","generalUsers"},
-        {"guest4","guest4","generalUsers"},
-        {"guest5","guest5","generalUsers"},
+        {"kasir1","kasir1","generalUsers"},
+        {"kasir2","kasir2","generalUsers"},
+        {"kasir3","kasir3","generalUsers"},
+        {"kasir4","kasir4","generalUsers"},
+        {"kasir5","kasir5","generalUsers"},
         {"admin","admin","admin"}
     };
     
