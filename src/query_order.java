@@ -16,6 +16,7 @@ public class query_order extends OrderCenter{
     
     private String[] menu; //penyimpanan sementara data menu yang diambil
     private int total; // untuk menyimpan total harga menu
+    private String temp;
 
     @Override
     public String showAllOrder(int indexReceipt){ //untuk menampilkan seluruh menu yang sudah di pesan
@@ -33,11 +34,10 @@ public class query_order extends OrderCenter{
         query_order queryOrder = new query_order();
         this.total = 0;
         query_menu queryMenu = new query_menu();
-        String temp = "Menu yang sudah di pesan :\n\n";
+        temp = "Menu yang sudah di pesan :\n\n";
         System.out.println("sum order: " + currentOrder.allMenuOrdered.size());
-        for (int i = 0; i < currentOrder.allMenuOrdered.size(); i++) {
-            if(currentOrder.allMenuOrdered.get(i).jumlahPesanan != 0){
-                MenuOrdered currentMenuOrdered = currentOrder.allMenuOrdered.get(i);
+        currentOrder.allMenuOrdered.forEach( (currentMenuOrdered) -> {
+            if(currentMenuOrdered.jumlahPesanan != 0){
                 
                 menu = queryMenu.getMenu(currentMenuOrdered.idMenu);
                 temp += menu[0] + "\t" + menu[1] + "\tX" + currentMenuOrdered.jumlahPesanan + "\t" + 
@@ -45,7 +45,7 @@ public class query_order extends OrderCenter{
                         currentMenuOrdered.description + "\n\n";
                 this.total += currentMenuOrdered.jumlahPesanan * queryMenu.getIntPrice(menu[1]);
             }
-        }
+        });
         temp += "-------------------------------------------------\n Total : Rp. " + total;
         
         String currentPaymentMethod = currentOrder.paymentMethod;
