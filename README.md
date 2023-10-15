@@ -2,8 +2,8 @@
 Pengembangan dari Aplikasi Berikut:
 https://github.com/imamkahih/kasirsederhana-java
 
-Kanban Board (Private):
-https://trello.com/b/DkGZjUNM/kasir-app
+Kanban Board:
+https://github.com/users/revoreva/projects/1
 
 Latest Release:
 - https://github.com/revoreva/kasirsederhana-java/releases
