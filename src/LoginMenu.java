@@ -136,7 +136,7 @@ public class LoginMenu extends javax.swing.JFrame {
         UsersManagement users = new UsersManagement();
         Boolean isUserExist = false;
 
-        for (String[] user : users.listUsers) {
+        for (String[] user : users.getListOfData()) {
             if (user[0].equals(new String(usernameTextField.getText())) && user[1].equals(new String(passwordTextField.getPassword()))) {
                 isUserExist = true;
 
@@ -174,7 +174,7 @@ public class LoginMenu extends javax.swing.JFrame {
                 adminMenu.setupLayout(usernameLoggedIn);
                 dispose();
             } else {
-                choose_menues guestMenu = new choose_menues();
+                ChooseMenus guestMenu = new ChooseMenus();
                 guestMenu.setVisible(true);
                 dispose();
             }

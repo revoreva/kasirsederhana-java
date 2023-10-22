@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.function.Function;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -306,13 +307,37 @@ public class payment extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    // Before:
+//    private void paymentMethodChoiceItemStateChanged(java.awt.event.ItemEvent evt) {                                                     
+//        payment methodReference = new payment(0);
+//        
+//        String choosenPaymentMethodString = paymentMethodChoice.getSelectedItem().toString().toLowerCase();
+//        System.out.println("payment method: " + choosenPaymentMethodString);
+//        if(choosenPaymentMethodString.equals("cash")) {
+//            setNominalPaidTextField(true, "");
+//        } else if(choosenPaymentMethodString.equals("Pilih Metode Pembayaran".toLowerCase())) {
+//            setNominalPaidTextField(false, "");
+//            finishButton.setEnabled(false);
+//        } else {
+//            setNominalPaidTextField(false, "" + (payment));
+//            finishButton.setEnabled(true);
+//        }
+//    }     
+    
+    // After:
     private void paymentMethodChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_paymentMethodChoiceItemStateChanged
+        payment methodReference = new payment(0);
+        Function<Boolean, Void> setNominalNonCash = (Boolean isEnabled) -> {
+            methodReference.setNominalPaidTextField(true, "");
+            return null;
+        };
+
         String choosenPaymentMethodString = paymentMethodChoice.getSelectedItem().toString().toLowerCase();
         System.out.println("payment method: " + choosenPaymentMethodString);
         if(choosenPaymentMethodString.equals("cash")) {
-            setNominalPaidTextField(true, "");
+            setNominalNonCash.apply(true);
         } else if(choosenPaymentMethodString.equals("Pilih Metode Pembayaran".toLowerCase())) {
-            setNominalPaidTextField(false, "");
+            setNominalNonCash.apply(false);
             finishButton.setEnabled(false);
         } else {
             setNominalPaidTextField(false, "" + (payment));
