@@ -132,8 +132,14 @@ public class LoginMenu extends javax.swing.JFrame {
         titleLabel.setText("Please Wait...");
         loginButton.setEnabled(false);
         
-        UsersManagement users = new UsersManagement();
+        HardcodedListOfdata users = new UsersManagement();
         Boolean isUserExist = false;
+        
+        // After, adding checker using instanceOf, to make sure correct inherit
+        if(!(users instanceof UsersManagement)) {
+            reportLogin(false);
+            return;
+        }
 
         for (String[] user : users.getListOfData()) {
             if (user[0].equals(new String(usernameTextField.getText())) && user[1].equals(new String(passwordTextField.getPassword()))) {
