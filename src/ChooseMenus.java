@@ -11,12 +11,12 @@
  *
  * @author imamkahih
  */
-public class choose_menues extends javax.swing.JFrame {
+public class ChooseMenus extends javax.swing.JFrame {
 
     /**
-     * Creates new form choose_menues
+     * Creates new form ChooseMenus
      */
-    public choose_menues() {
+    public ChooseMenus() {
         initComponents();
     }
 
@@ -232,7 +232,7 @@ public class choose_menues extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        detail_order asd = new detail_order();
+        DetailOrder asd = new DetailOrder();
         asd.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_nextButtonActionPerformed
 

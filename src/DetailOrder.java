@@ -8,14 +8,14 @@
  *
  * @author imamkahih
  */
-public class detail_order extends javax.swing.JFrame {
+public class DetailOrder extends javax.swing.JFrame {
 
     /**
-     * Creates new form detail_order
+     * Creates new form DetailOrder
      */
-    query_order qOrder = new query_order();
+    QueryOrder qOrder = new QueryOrder();
     
-    public detail_order() {
+    public DetailOrder() {
         initComponents();
         orderListTextArea.setText(qOrder.showAllOrder(-1));
         if(qOrder.totalPayment() <= 0){nextButton.setEnabled(false);}
@@ -138,21 +138,23 @@ public class detail_order extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(detail_order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(detail_order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(detail_order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(detail_order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DetailOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new detail_order().setVisible(true);
+                new DetailOrder().setVisible(true);
             }
         });
     }

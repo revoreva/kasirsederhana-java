@@ -194,7 +194,7 @@ public class AddOrder extends javax.swing.JFrame {
     private void initVariables(int indexMenu) {
         this.indexMenu = indexMenu;
         
-        query_menu menu = new query_menu();
+        QueryMenu menu = new QueryMenu();
         
         foodLabel.setText(menu.getMenu(indexMenu)[0]);
     }

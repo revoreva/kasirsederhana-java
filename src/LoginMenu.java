@@ -1,4 +1,3 @@
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -133,10 +132,16 @@ public class LoginMenu extends javax.swing.JFrame {
         titleLabel.setText("Please Wait...");
         loginButton.setEnabled(false);
         
-        UsersManagement users = new UsersManagement();
+        HardcodedListOfdata users = new UsersManagement();
         Boolean isUserExist = false;
+        
+        // After, adding checker using instanceOf, to make sure correct inherit
+        if(!(users instanceof UsersManagement)) {
+            reportLogin(false);
+            return;
+        }
 
-        for (String[] user : users.listUsers) {
+        for (String[] user : users.getListOfData()) {
             if (user[0].equals(new String(usernameTextField.getText())) && user[1].equals(new String(passwordTextField.getPassword()))) {
                 isUserExist = true;
 
@@ -146,11 +151,25 @@ public class LoginMenu extends javax.swing.JFrame {
 
                 usernameLoggedIn = user[0];
                 roleLoggedIn = role;
-
-                if(role != UsersManagement.Role.invalidUsers) {
-                    reportLogin(true);
-                } else {
-                    reportLogin(false);
+                
+                // Before:
+//                if(role != UsersManagement.Role.invalidUsers) {
+//                    reportLogin(true);
+//                } else {
+//                    reportLogin(false);
+//                }
+                
+                // After:
+                switch (role) {
+                    case admin:
+                        reportLogin(true);
+                        break;
+                    case generalUsers:
+                        reportLogin(true);
+                        break;
+                    case invalidUsers:
+                    default:
+                        reportLogin(false);
                 }
 
                 break;
@@ -174,7 +193,7 @@ public class LoginMenu extends javax.swing.JFrame {
                 adminMenu.setupLayout(usernameLoggedIn);
                 dispose();
             } else {
-                choose_menues guestMenu = new choose_menues();
+                ChooseMenus guestMenu = new ChooseMenus();
                 guestMenu.setVisible(true);
                 dispose();
             }

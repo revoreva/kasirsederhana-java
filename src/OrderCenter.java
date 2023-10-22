@@ -33,8 +33,11 @@ class AllOrder {
     String paymentMethod = "", kasirName = "";
     OrderDate orderDate = new OrderDate();
 }
+// Before: 
+// abstract class OrderCenter {
 
-abstract class OrderCenter {
+// After:
+abstract sealed class OrderCenter permits QueryOrder {
     private static List<AllOrder> allOrder = new ArrayList<AllOrder>(); //untuk menyimpan semua order
     
     public static AllOrder currentOrder() {

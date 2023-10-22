@@ -7,16 +7,43 @@
  *
  * @author reva.yoga
  */
-public class UsersManagement {
-    protected String[][] listUsers = {
-        // username, password, role
-        {"kasir1","kasir1","generalUsers"},
-        {"kasir2","kasir2","generalUsers"},
-        {"kasir3","kasir3","generalUsers"},
-        {"kasir4","kasir4","generalUsers"},
-        {"kasir5","kasir5","generalUsers"},
-        {"admin","admin","admin"}
-    };
+
+// Before:
+//public class UsersManagement {
+//    protected String[][] listUsers = {
+//        // username, password, role
+//        {"kasir1","kasir1","generalUsers"},
+//        {"kasir2","kasir2","generalUsers"},
+//        {"kasir3","kasir3","generalUsers"},
+//        {"kasir4","kasir4","generalUsers"},
+//        {"kasir5","kasir5","generalUsers"},
+//        {"admin","admin","admin"}
+//    };
+//    
+//    enum Role {
+//        generalUsers,
+//        admin,
+//        invalidUsers
+//    }
+//}
+
+// After:
+public class UsersManagement extends HardcodedListOfdata {
+    
+    @Override
+    public String[][] getListOfData() {
+        String[][] result = {
+            // username, password, role
+            {"kasir1","kasir1","generalUsers"},
+            {"kasir2","kasir2","generalUsers"},
+            {"kasir3","kasir3","generalUsers"},
+            {"kasir4","kasir4","generalUsers"},
+            {"kasir5","kasir5","generalUsers"},
+            {"admin","admin","admin"}
+        };
+        
+        return result;
+    }
     
     enum Role {
         generalUsers,

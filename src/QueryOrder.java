@@ -12,7 +12,11 @@ import java.util.List;
  *
  * @author imamkahih
  */
-public class query_order extends OrderCenter{
+// Before:
+//public class QueryOrder extends OrderCenter {
+
+// After:
+public final class QueryOrder extends OrderCenter {
     
     private String[] menu; //penyimpanan sementara data menu yang diambil
     private int total; // untuk menyimpan total harga menu
@@ -31,9 +35,9 @@ public class query_order extends OrderCenter{
         }
         
         
-        query_order queryOrder = new query_order();
+        QueryOrder queryOrder = new QueryOrder();
         this.total = 0;
-        query_menu queryMenu = new query_menu();
+        QueryMenu queryMenu = new QueryMenu();
         temp = "Menu yang sudah di pesan :\n\n";
         System.out.println("sum order: " + currentOrder.allMenuOrdered.size());
         currentOrder.allMenuOrdered.forEach( (currentMenuOrdered) -> {
