@@ -1,4 +1,3 @@
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -146,11 +145,25 @@ public class LoginMenu extends javax.swing.JFrame {
 
                 usernameLoggedIn = user[0];
                 roleLoggedIn = role;
-
-                if(role != UsersManagement.Role.invalidUsers) {
-                    reportLogin(true);
-                } else {
-                    reportLogin(false);
+                
+                // Before:
+//                if(role != UsersManagement.Role.invalidUsers) {
+//                    reportLogin(true);
+//                } else {
+//                    reportLogin(false);
+//                }
+                
+                // After:
+                switch (role) {
+                    case admin:
+                        reportLogin(true);
+                        break;
+                    case generalUsers:
+                        reportLogin(true);
+                        break;
+                    case invalidUsers:
+                    default:
+                        reportLogin(false);
                 }
 
                 break;
