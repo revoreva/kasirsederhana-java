@@ -137,8 +137,17 @@ public class AdminMenu extends javax.swing.JFrame {
             
             if(indexChoosen >= 0) {
                 receiptPage.indexReceipt = indexChoosen;
-                receiptPage.setupLayout();
-                receiptPage.setVisible(true);
+                
+                // After:
+                ReceiptChecker choosenReceipt = new ReceiptChecker(indexChoosen);
+                ReceiptChecker willShownReceipt = new ReceiptChecker(receiptPage.indexReceipt);
+                
+                if(choosenReceipt.equals(willShownReceipt)) {
+                    receiptPage.setupLayout();
+                    receiptPage.setVisible(true);
+                } else {
+                    System.out.println("error, receipt is not same with choosen one");
+                }
             }
         }
     }//GEN-LAST:event_indexReceiptChoiceItemStateChanged
