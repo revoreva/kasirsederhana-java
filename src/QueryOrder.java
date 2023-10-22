@@ -12,7 +12,11 @@ import java.util.List;
  *
  * @author imamkahih
  */
-public class QueryOrder extends OrderCenter {
+// Before:
+//public class QueryOrder extends OrderCenter {
+
+// After:
+public final class QueryOrder extends OrderCenter {
     
     private String[] menu; //penyimpanan sementara data menu yang diambil
     private int total; // untuk menyimpan total harga menu
